@@ -1,0 +1,70 @@
+/* =========================
+   MEN HERO SECTION
+========================= */
+.men-hero {
+  height: 100vh;
+  background-image: url("/images/male.jpg");
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.men-hero-content {
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+  padding: 0 20px; /* ensures text doesn't touch edges on mobile */
+}
+
+.men-hero-content h1 {
+  font-size: 32px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .men-hero-content h1 {
+    font-size: 28px;
+  }
+
+  .men-hero {
+    background-position: center center;
+  }
+}
+
+@media (max-width: 768px) {
+  .men-hero {
+    height: 80vh; /* reduce height on tablets */
+    background-position: center center;
+  }
+
+  .men-hero-content {
+    margin-bottom: 40px;
+  }
+
+  .men-hero-content h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .men-hero {
+    height: 70vh; /* reduce height on mobile */
+  }
+
+  .men-hero-content {
+    margin-bottom: 30px;
+  }
+
+  .men-hero-content h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+}

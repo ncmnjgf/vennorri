@@ -1,0 +1,70 @@
+/* =========================
+   WOMEN HERO SECTION
+========================= */
+.women-hero {
+  height: 100vh;
+  background-image: url("/images/femalepage.jpg");
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.women-hero-content {
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+  padding: 0 20px; /* add padding for small screens */
+}
+
+.women-hero-content h1 {
+  font-size: 32px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .women-hero-content h1 {
+    font-size: 28px;
+  }
+
+  .women-hero {
+    background-position: center center;
+  }
+}
+
+@media (max-width: 768px) {
+  .women-hero {
+    height: 80vh; /* reduce height on tablets */
+    background-position: center center;
+  }
+
+  .women-hero-content {
+    margin-bottom: 40px;
+  }
+
+  .women-hero-content h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .women-hero {
+    height: 70vh; /* reduce height on mobile */
+  }
+
+  .women-hero-content {
+    margin-bottom: 30px;
+  }
+
+  .women-hero-content h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+}
