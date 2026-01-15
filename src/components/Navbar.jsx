@@ -2,12 +2,17 @@ import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { useState } from "react";
 import LoginModal from "./LoginModal";
+
 export default function Navbar() {
   const location = useLocation();
-  const isMenPage = location.pathname === "/men";
-  const isWomenPage = location.pathname === "/women";
+
+  const isMenPage = location.pathname.startsWith("/men");
+  const isWomenPage = location.pathname.startsWith("/women");
+
   const isTransparent = isMenPage || isWomenPage;
+
   const [showLogin, setShowLogin] = useState(false);
+
   return (
     <nav
       className={`navbar ${
@@ -19,7 +24,7 @@ export default function Navbar() {
         <div className="nav-item">
           <Link
             to="/women"
-            className={`nav-link ${isWomenPage ? "no-underline" : ""}`}
+            className={`nav-link ${isWomenPage ? "no-underline active" : ""}`}
           >
             <span>WOMEN</span>
           </Link>
@@ -34,7 +39,7 @@ export default function Navbar() {
         <div className="nav-item">
           <Link
             to="/men"
-            className={`nav-link ${isMenPage ? "no-underline" : ""}`}
+            className={`nav-link ${isMenPage ? "no-underline active" : ""}`}
           >
             <span>MEN</span>
           </Link>
@@ -58,10 +63,13 @@ export default function Navbar() {
         </span>
 
         {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+
         <span>♡</span>
+
         <Link to="/shop" className="nav-link">
           <span>🛒</span>
         </Link>
+
         <span>🔍</span>
       </div>
     </nav>
