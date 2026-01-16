@@ -24,9 +24,9 @@ export default function Navbar() {
         <div className="nav-item">
           <Link
             to="/women"
-            className={`nav-link ${isWomenPage ? "no-underline active" : ""}`}
+            className={`nav-link nav-link-women ${isWomenPage ? "active" : ""}`}
           >
-            <span>WOMEN</span>
+            WOMEN
           </Link>
 
           <div className="dropdown">
@@ -39,9 +39,9 @@ export default function Navbar() {
         <div className="nav-item">
           <Link
             to="/men"
-            className={`nav-link ${isMenPage ? "no-underline active" : ""}`}
+            className={`nav-link nav-link-men ${isMenPage ? "active" : ""}`}
           >
-            <span>MEN</span>
+            MEN
           </Link>
 
           <div className="dropdown">

@@ -1,70 +1,103 @@
-/* =========================
-   WOMEN HERO SECTION
-========================= */
 .women-hero {
-  height: 100vh;
-  background-image: url("/images/femalepage.jpg");
-  background-size: cover;
-  background-position: center top;
   position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.women-hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out, transform 5s ease-out;
+  transform: scale(1.02);
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; /* text at bottom */
   justify-content: center;
+  padding-bottom: 80px;
+}
+
+.women-hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
 }
 
 .women-hero-content {
   text-align: center;
   color: white;
-  margin-bottom: 60px;
-  padding: 0 20px; /* add padding for small screens */
+  max-width: 700px;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: contentFade 1s forwards;
+  animation-delay: 0.3s;
 }
 
-.women-hero-content h1 {
-  font-size: 32px;
-  letter-spacing: 2px;
+.women-hero-slide.active .women-hero-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes contentFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.women-tagline {
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+.women-title {
+  font-size: 3.5rem;
   font-weight: 700;
-  margin: 0;
+  margin-bottom: 28px;
+  text-shadow: 0px 0px 15px rgba(0,0,0,0.6);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1024px) {
-  .women-hero-content h1 {
-    font-size: 28px;
-  }
-
-  .women-hero {
-    background-position: center center;
-  }
+.women-button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 14px 38px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .women-hero {
-    height: 80vh; /* reduce height on tablets */
-    background-position: center center;
-  }
-
-  .women-hero-content {
-    margin-bottom: 40px;
-  }
-
-  .women-hero-content h1 {
-    font-size: 24px;
-  }
+.women-button:hover {
+  background: black;
+  color: white;
 }
 
-@media (max-width: 480px) {
-  .women-hero {
-    height: 70vh; /* reduce height on mobile */
-  }
+.women-dots {
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
+  text-align: center;
+  z-index: 5;
+}
 
-  .women-hero-content {
-    margin-bottom: 30px;
-  }
+.women-dots .dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-  .women-hero-content h1 {
-    font-size: 20px;
-    letter-spacing: 1px;
-  }
+.women-dots .dot.active {
+  background: white;
 }

@@ -1,70 +1,147 @@
-/* =========================
-   MEN HERO SECTION
-========================= */
 .men-hero {
-  height: 100vh;
-  background-image: url("/images/male.jpg");
-  background-size: cover;
-  background-position: center top;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
 }
 
+/* slides */
+.men-hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out, transform 5s ease-out;
+  transform: scale(1.02); /* subtle zoom */
+  display: flex;
+  align-items: flex-end; /* text at bottom */
+  justify-content: center;
+  padding-bottom: 80px;
+}
+
+.men-hero-slide.active {
+  opacity: 1;
+  transform: scale(1); /* zoom back to normal as it becomes visible */
+  z-index: 2;
+}
+
+/* content */
 .men-hero-content {
   text-align: center;
   color: white;
-  margin-bottom: 60px;
-  padding: 0 20px; /* ensures text doesn't touch edges on mobile */
+  max-width: 700px;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: contentFade 1s forwards;
+  animation-delay: 0.3s;
 }
 
-.men-hero-content h1 {
-  font-size: 32px;
-  letter-spacing: 2px;
+.men-hero-slide.active .men-hero-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes contentFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* tagline */
+.men-tagline {
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* title */
+.men-title {
+  font-size: 3.8rem;
   font-weight: 700;
-  margin: 0;
+  margin-bottom: 28px;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1024px) {
-  .men-hero-content h1 {
-    font-size: 28px;
-  }
-
-  .men-hero {
-    background-position: center center;
-  }
+/* button */
+.men-button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 14px 38px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .men-hero {
-    height: 80vh; /* reduce height on tablets */
-    background-position: center center;
-  }
-
-  .men-hero-content {
-    margin-bottom: 40px;
-  }
-
-  .men-hero-content h1 {
-    font-size: 24px;
-  }
+.men-button:hover {
+  background: #000;
+  color: #fff;
 }
 
-@media (max-width: 480px) {
-  .men-hero {
-    height: 70vh; /* reduce height on mobile */
-  }
+/* dots */
+.men-dots {
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
+  text-align: center;
+  z-index: 5;
+}
 
-  .men-hero-content {
-    margin-bottom: 30px;
-  }
+.men-dots .dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-  .men-hero-content h1 {
-    font-size: 20px;
-    letter-spacing: 1px;
-  }
+.men-dots .dot.active {
+  background: white;
+}
+/* Force MEN & WOMEN to always stay white */
+.nav-link--white {
+  color: white !important; /* override any parent color */
+  position: relative;
+}
+
+/* Optional: underline hover effect */
+.nav-link--white::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link--white:hover::after {
+  width: 100%;
+}
+
+/* Ensure hover text color stays white on all states */
+.navbar--solid .nav-link--white,
+.navbar--transparent .nav-link--white {
+  color: white !important;
+}
+
+/* Active / current page highlight */
+.nav-link--white.active {
+  font-weight: 600; /* optional, bold current page */
 }

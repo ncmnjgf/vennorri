@@ -204,3 +204,72 @@
     padding: 12px 15px;
   }
 }
+/* Force MEN & WOMEN to stay white */
+.nav-link--white {
+  color: white !important;
+}
+
+/* Optional: underline hover like Bonkers */
+.nav-link--white::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link--white:hover::after {
+  width: 100%;
+}
+/* =========================
+   MEN / WOMEN VISIBILITY
+========================= */
+
+/* Default transparent navbar behavior */
+.navbar--transparent .nav-link {
+  color: white;
+}
+
+/* Solid navbar behavior */
+.navbar--solid .nav-link {
+  color: black;
+}
+
+/* FORCE MEN & WOMEN to stay visible on Men/Women pages */
+.navbar--transparent .nav-link-men,
+.navbar--transparent .nav-link-women {
+  color: white;
+}
+
+/* ACTIVE underline (clean & premium) */
+.nav-link-men.active::after,
+.nav-link-women.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+}
+
+/* Hover underline */
+.nav-link-men::after,
+.nav-link-women::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link-men:hover::after,
+.nav-link-women:hover::after {
+  width: 100%;
+}
