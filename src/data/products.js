@@ -1,16 +1,28 @@
-export const products = [
+const products = [
   {
     id: 1,
-    name: "Black Crop Top",
-    price: 799,
-    image: "/images/p1.jpg",
-    discount: 17,
+    name: "Buzz Sling Bag",
+    price: 899,
+    image: "/images/hero1.jpg",
   },
   {
     id: 2,
-    name: "Oversized T-Shirt",
-    price: 999,
-    image: "/images/p2.jpg",
-    discount: 13,
+    name: "Orbit White Handbag",
+    price: 2499,
+    image: "/images/hero2.jpg",
+  },
+  {
+    id: 3,
+    name: "Urban Black Hoodie",
+    price: 1799,
+    image: "/images/hero3.jpg",
+  },
+  {
+    id: 4,
+    name: "Classic Green Cap",
+    price: 699,
+    image: "/images/hero4.jpg",
   },
 ];
+
+export default products;

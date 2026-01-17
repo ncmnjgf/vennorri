@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { useState } from "react";
 import LoginModal from "./LoginModal";
+import SearchOverlay from "./SearchOverlay";
 
 export default function Navbar() {
   const location = useLocation();
@@ -12,8 +13,10 @@ export default function Navbar() {
   const isTransparent = isMenPage || isWomenPage;
 
   const [showLogin, setShowLogin] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
+    <>
     <nav
       className={`navbar ${
         isTransparent ? "navbar--transparent" : "navbar--solid"
@@ -70,8 +73,14 @@ export default function Navbar() {
           <span>🛒</span>
         </Link>
 
-        <span>🔍</span>
+        <span onClick={() => setShowSearch(true)} style={{ cursor: "pointer" }}>
+          🔍
+        </span>
       </div>
     </nav>
+        {showSearch && (
+      <SearchOverlay onClose={() => setShowSearch(false)} />
+    )}
+    </>
   );
 }

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Men from "./pages/Men";
-import Shop from "./pages/Shop";
+// import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
 import DeliveryPopup from "./components/DeliveryPopup";
 import Women from "./pages/Women";
@@ -33,7 +33,7 @@ function App() {
     <Route path="premium" element={<WomenPremium />} />
   </Route>
 
-  <Route path="/shop" element={<Shop />} />
+  {/* <Route path="/shop" element={<Shop />} /> */}
 </Routes>
       <Footer />
     </>
