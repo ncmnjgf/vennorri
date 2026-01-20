@@ -19,14 +19,30 @@
   }
 }
 
+/* ❌ React Icon Close Button */
+.overlay-close {
+  position: fixed;
+  top: 22px;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 10000;
+  color: #000;
+}
+
+.overlay-close:hover {
+  opacity: 0.7;
+}
+
+/* Search Input */
 .search-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 40px;
 }
 
 .search-top input {
-  width: 95%;
+  width: 100%;
   font-size: 22px;
   border: none;
   border-bottom: 2px solid #000;
@@ -34,15 +50,19 @@
   padding: 10px 0;
 }
 
-.close-btn {
-  font-size: 22px;
-  cursor: pointer;
-}
-
+/* Sections */
 .search-section {
   margin-top: 40px;
 }
 
+.search-section h4 {
+  margin-bottom: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #555;
+}
+
+/* Chips */
 .search-chips span {
   display: inline-block;
   border: 1px solid #ccc;
@@ -58,6 +78,7 @@
   color: #fff;
 }
 
+/* Grid */
 .search-grid {
   margin-top: 20px;
   display: grid;

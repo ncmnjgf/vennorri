@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
 import products from "../data/products";
 import "../styles/SearchOverlay.css";
 
@@ -27,6 +28,12 @@ export default function SearchOverlay({ onClose }) {
 
   return (
     <div className="search-overlay">
+      {/* ❌ CLOSE ICON */}
+      <button className="overlay-close" onClick={onClose} aria-label="Close">
+        <IoClose />
+      </button>
+
+      {/* SEARCH INPUT */}
       <div className="search-top">
         <input
           type="text"
@@ -35,11 +42,9 @@ export default function SearchOverlay({ onClose }) {
           onChange={(e) => setQuery(e.target.value)}
           autoFocus
         />
-        <span className="close-btn" onClick={onClose}>
-          ✕
-        </span>
       </div>
 
+      {/* POPULAR SEARCHES */}
       <div className="search-section">
         <h4>POPULAR SEARCHES</h4>
         <div className="search-chips">
@@ -53,8 +58,9 @@ export default function SearchOverlay({ onClose }) {
         </div>
       </div>
 
+      {/* TRENDING / RESULTS */}
       <div className="search-section">
-        <h4>TRENDING NOW</h4>
+        <h4>{query ? "SEARCH RESULTS" : "TRENDING NOW"}</h4>
         <div className="search-grid">
           {(query ? filteredProducts : products.slice(0, 4)).map((p) => (
             <Link
