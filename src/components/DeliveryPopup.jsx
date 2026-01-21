@@ -1,36 +1,41 @@
 import { useEffect, useState } from "react";
-import "../styles/DeliveryPopup.css";
+import "../styles/deliveryPopup.css";
 
 export default function DeliveryPopup() {
-  const [show, setShow] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
 
   useEffect(() => {
     if (closed) return;
 
-    const interval = setInterval(() => {
-      setShow(true);
+    // show after 3 seconds
+    const showTimer = setTimeout(() => {
+      setVisible(true);
+    }, 3000);
 
-      setTimeout(() => {
-        setShow(false);
-      }, 8000); // hide after 8 sec
-    }, 10000); // show every 10 sec
+    // hide after 10 seconds
+    const hideTimer = setTimeout(() => {
+      setVisible(false);
+    }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
   }, [closed]);
 
-  if (closed) return null;
+  if (!visible || closed) return null;
 
   return (
-    <div className={`delivery-glass ${show ? "show" : ""}`}>
+    <div className="delivery-popup">
       <span className="delivery-text">
-        🚚 Delivered in <strong>45 mins</strong>
+        🚚 Delivered in <strong>45 minutes</strong>
       </span>
 
       <button
-        className="close-btn"
+        className="delivery-close"
         onClick={() => setClosed(true)}
-        aria-label="Close popup"
+        aria-label="Close delivery popup"
       >
         ×
       </button>

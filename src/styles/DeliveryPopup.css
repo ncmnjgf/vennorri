@@ -1,10 +1,6 @@
-/* ===============================
-   DELIVERY POPUP (SMOOTH POPUP)
-================================ */
-
-.delivery-glass {
+.delivery-popup {
   position: fixed;
-  bottom: 20px;
+  bottom: 90px; /* stays above WhatsApp button */
   left: 20px;
 
   display: flex;
@@ -12,93 +8,55 @@
   gap: 12px;
 
   padding: 12px 18px;
-  border-radius: 12px;
+  border-radius: 14px;
 
   background: linear-gradient(135deg, #ff6a00, #ff3d00);
-  color: #fff;
-
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
 
   box-shadow: 0 12px 30px rgba(255, 61, 0, 0.4);
   z-index: 9999;
 
-  /* POPUP ANIMATION */
-  opacity: 0;
-  transform: scale(0.9) translateY(10px);
-  pointer-events: none;
-
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-}
-
-/* Show popup */
-.delivery-glass.show {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  pointer-events: auto;
-}
-
-/* ===============================
-   TEXT
-================================ */
-
-.delivery-text {
-  white-space: nowrap;
+  animation: slideUp 0.4s ease forwards;
 }
 
 .delivery-text strong {
   font-weight: 700;
 }
 
-/* ===============================
-   CLOSE BUTTON
-================================ */
-
-.close-btn {
-  background: rgba(255, 255, 255, 0.2);
+.delivery-close {
+  background: rgba(255, 255, 255, 0.25);
   border: none;
   color: #fff;
-
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
-
   padding: 2px 8px;
   border-radius: 6px;
 }
 
-.close-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
+.delivery-close:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
-/* ===============================
-   TIMER LINE
-================================ */
-
-.delivery-glass::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  height: 3px;
-  width: 100%;
-
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 0 0 12px 12px;
-}
-
-/* Progress animation */
-.delivery-glass.show::after {
-  animation: timerLine 8s linear forwards;
-}
-
-@keyframes timerLine {
+/* Animation */
+@keyframes slideUp {
   from {
-    width: 100%;
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    width: 0%;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .delivery-popup {
+    left: 12px;
+    right: 12px;
+    bottom: 80px;
+    justify-content: space-between;
   }
 }

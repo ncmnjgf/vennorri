@@ -1,0 +1,63 @@
+/* ===============================
+   WHATSAPP FLOATING POPUP (LEFT)
+================================ */
+
+.whatsapp-popup {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 16px;
+  border-radius: 30px;
+
+  background: #25d366;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover animation */
+.whatsapp-popup:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+/* Icon */
+.whatsapp-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Text */
+.whatsapp-text {
+  white-space: nowrap;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width: 480px) {
+  .whatsapp-popup {
+    left: 12px;
+    bottom: 12px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .whatsapp-icon {
+    width: 24px;
+    height: 24px;
+  }
+}

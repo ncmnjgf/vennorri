@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import VideoCards from "./components/VideoCards";
 import Home from "./pages/Home";
+import WhatsAppPopup from "./components/WhatsAppPopup";
 import Men from "./pages/Men";
 // import Shop from "./pages/Shop";
 import Footer from "./components/Footer";
@@ -14,6 +16,7 @@ function App() {
   return (
     <>
       <DeliveryPopup />
+      <WhatsAppPopup />
       <Navbar />
 
 <Routes>
