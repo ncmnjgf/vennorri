@@ -49,9 +49,9 @@
 }
 
 .text-logo {
-  font-size: 28px;          
+  font-size: 28px;
   font-weight: 800;
-  letter-spacing: 3px;     
+  letter-spacing: 3px;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -153,7 +153,8 @@
   }
 
   .nav-left {
-    display: none; /* hide links by default */
+    display: none;
+    /* hide links by default */
     flex-direction: column;
     width: 100%;
     background: white;
@@ -161,7 +162,7 @@
     top: 80px;
     left: 0;
     padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     gap: 15px;
   }
 
@@ -204,6 +205,7 @@
     padding: 12px 15px;
   }
 }
+
 /* Force MEN & WOMEN to stay white */
 .nav-link--white {
   color: white !important;
@@ -224,6 +226,7 @@
 .nav-link--white:hover::after {
   width: 100%;
 }
+
 /* =========================
    MEN / WOMEN VISIBILITY
 ========================= */
@@ -272,4 +275,21 @@
 .nav-link-men:hover::after,
 .nav-link-women:hover::after {
   width: 100%;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-icon {
+  cursor: pointer;
+  color: #111;
+  transition: all 0.3s ease;
+}
+
+.nav-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
 }

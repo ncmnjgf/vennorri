@@ -11,12 +11,12 @@ export default function DeliveryPopup() {
     // show after 3 seconds
     const showTimer = setTimeout(() => {
       setVisible(true);
-    }, 3000);
+    }, 2000);
 
     // hide after 10 seconds
     const hideTimer = setTimeout(() => {
       setVisible(false);
-    }, 3000);
+    }, 1000);
 
     return () => {
       clearTimeout(showTimer);
