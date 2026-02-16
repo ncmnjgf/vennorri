@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import slides from "../data/slides";
 import "../styles/men.css";
-
+import ProductGrid from "../components/ProductGrid";
 export default function Men() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -19,12 +19,15 @@ export default function Men() {
     return () => clearInterval(interval);
   }, []);
 
-  return (
+ return (
+  <>
     <section className="men-hero">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`men-hero-slide ${index === currentSlide ? "active" : ""}`}
+          className={`men-hero-slide ${
+            index === currentSlide ? "active" : ""
+          }`}
           style={{ backgroundImage: `url(${slide.image})` }}
         >
           <div className="men-hero-content">
@@ -45,5 +48,9 @@ export default function Men() {
         ))}
       </div>
     </section>
-  );
+
+    {/* PRODUCT LIST BELOW HERO */}
+    <ProductGrid category="men" />
+  </>
+);
 }

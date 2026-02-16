@@ -59,7 +59,7 @@ export default function LoginModal({ onClose }) {
 
         {/* LEFT */}
         <div className="login-left">
-          <h1>VENNORI</h1>
+          <h1>VENNOIRR</h1>
           <p>Welcome!</p>
           <span>Register to  get availiable deals </span>
         </div>

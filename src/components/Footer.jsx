@@ -5,7 +5,7 @@ export default function Footer() {
 
         {/* LEFT BRAND SECTION */}
         <div className="footer-brand">
-          <h1>Vennoirr<br /></h1>
+          <h1>Vennoirr <br /></h1>
 
           <div className="footer-socials">
             <span>ⓕ</span>

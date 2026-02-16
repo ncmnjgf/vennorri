@@ -1,0 +1,217 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+}
+
+.hover-cart {
+  position: absolute;
+  bottom: -50px;
+  width: 100%;
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  transition: .3s;
+}
+
+.product-card:hover .hover-cart {
+  bottom: 0;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  z-index: 999;
+}
+
+.sizes button.active {
+  background: black;
+  color: white;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  right: -350px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  transition: .3s;
+}
+
+.cart-drawer.open {
+  right: 0;
+}
+/* ==== PRODUCT SIZE SIDEBAR ==== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  z-index: 9999;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn .3s ease forwards;
+}
+
+@keyframes slideIn {
+  from { right: -360px; }
+  to { right: 0; }
+}
+
+.sidebar .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.sidebar h3 {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.sidebar p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 8px 0 20px;
+}
+
+.sizes {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sizes button {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background: none;
+  cursor: pointer;
+}
+
+.sizes button.active {
+  background: black;
+  color: white;
+}
+
+.add-btn {
+  margin-top: auto;
+  background: black;
+  color: white;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.cart-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  padding: 40px;
+}
+
+.product-card {
+  text-align: center;
+}
+
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.heart-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.hover-cart {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 100%;
+  padding: 14px;
+  background: black;
+  color: white;
+  border: none;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.img-wrap:hover .hover-cart {
+  bottom: 0;
+}
+.heart-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  color: black;
+}
+
+.heart-btn.liked {
+  background: black;
+  color: white;
+}

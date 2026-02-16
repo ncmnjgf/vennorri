@@ -68,7 +68,7 @@ export default function Navbar() {
 
         {/* LOGO */}
         <Link to="/" className="text-logo">
-          Vennori
+          Vennoirr 
         </Link>
 
         {/* RIGHT SECTION */}
@@ -81,7 +81,9 @@ export default function Navbar() {
           />
 
           {/* Wishlist */}
+          <Link to="/cart">
           <FiHeart size={22} className="nav-icon" />
+          </Link>
 
           {/* Cart */}
           <Link to="/shop">

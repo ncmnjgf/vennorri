@@ -1,0 +1,30 @@
+.cart-container {
+  padding: 40px;
+}
+
+.cart-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.cart-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.cart-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.cart-card button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
