@@ -1,10 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { 
-  FiUser, 
-  FiHeart, 
-  FiShoppingCart, 
-  FiSearch 
+import {
+  FiUser,
+  FiHeart,
+  FiShoppingCart,
+  FiSearch,
+  FiMenu,
+  FiX
 } from "react-icons/fi";
 
 import "./Navbar.css";
@@ -21,6 +23,9 @@ export default function Navbar() {
 
   const [showLogin, setShowLogin] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <>
@@ -29,12 +34,18 @@ export default function Navbar() {
           isTransparent ? "navbar--transparent" : "navbar--solid"
         }`}
       >
+        {/* HAMBURGER (Mobile Only) */}
+        <div className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
+          {mobileOpen ? <FiX size={26} /> : <FiMenu size={26} />}
+        </div>
+
         {/* LEFT SECTION */}
-        <div className="nav-left">
+        <div className={`nav-left ${mobileOpen ? "active" : ""}`}>
           {/* WOMEN */}
           <div className="nav-item">
             <Link
               to="/women"
+              onClick={closeMobileMenu}
               className={`nav-link nav-link-women ${
                 isWomenPage ? "active" : ""
               }`}
@@ -43,8 +54,12 @@ export default function Navbar() {
             </Link>
 
             <div className="dropdown">
-              <Link to="/women/funky">Funky</Link>
-              <Link to="/women/premium">Premium</Link>
+              <Link to="/women/funky" onClick={closeMobileMenu}>
+                Funky
+              </Link>
+              <Link to="/women/premium" onClick={closeMobileMenu}>
+                Premium
+              </Link>
             </div>
           </div>
 
@@ -52,6 +67,7 @@ export default function Navbar() {
           <div className="nav-item">
             <Link
               to="/men"
+              onClick={closeMobileMenu}
               className={`nav-link nav-link-men ${
                 isMenPage ? "active" : ""
               }`}
@@ -60,37 +76,37 @@ export default function Navbar() {
             </Link>
 
             <div className="dropdown">
-              <Link to="/men/funky">Funky</Link>
-              <Link to="/men/premium">Premium</Link>
+              <Link to="/men/funky" onClick={closeMobileMenu}>
+                Funky
+              </Link>
+              <Link to="/men/premium" onClick={closeMobileMenu}>
+                Premium
+              </Link>
             </div>
           </div>
         </div>
 
         {/* LOGO */}
-        <Link to="/" className="text-logo">
-          Vennoirr 
+        <Link to="/" className="text-logo" onClick={closeMobileMenu}>
+          Vennoirr
         </Link>
 
         {/* RIGHT SECTION */}
         <div className="nav-right">
-          {/* User Icon */}
           <FiUser
             size={22}
             className="nav-icon"
             onClick={() => setShowLogin(true)}
           />
 
-          {/* Wishlist */}
-          <Link to="/cart">
-          <FiHeart size={22} className="nav-icon" />
+          <Link to="/wishlist" onClick={closeMobileMenu}>
+            <FiHeart size={22} className="nav-icon" />
           </Link>
 
-          {/* Cart */}
-          <Link to="/shop">
+          <Link to="/cart" onClick={closeMobileMenu}>
             <FiShoppingCart size={22} className="nav-icon" />
           </Link>
 
-          {/* Search */}
           <FiSearch
             size={22}
             className="nav-icon"
@@ -98,6 +114,11 @@ export default function Navbar() {
           />
         </div>
       </nav>
+
+      {/* Overlay for mobile menu */}
+      {mobileOpen && (
+        <div className="mobile-overlay" onClick={closeMobileMenu}></div>
+      )}
 
       {/* Login Modal */}
       {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}

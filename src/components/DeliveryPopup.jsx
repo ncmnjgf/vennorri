@@ -8,15 +8,15 @@ export default function DeliveryPopup() {
   useEffect(() => {
     if (closed) return;
 
-    // show after 3 seconds
+    // show after 2 seconds
     const showTimer = setTimeout(() => {
       setVisible(true);
     }, 2000);
 
-    // hide after 10 seconds
+    // hide 8 seconds AFTER showing (total 10s from start)
     const hideTimer = setTimeout(() => {
       setVisible(false);
-    }, 1000);
+    }, 10000);
 
     return () => {
       clearTimeout(showTimer);
