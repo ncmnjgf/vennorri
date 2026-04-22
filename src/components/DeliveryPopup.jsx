@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/deliveryPopup.css";
+import "../styles/DeliveryPopup.css";
 
 export default function DeliveryPopup() {
   const [visible, setVisible] = useState(false);

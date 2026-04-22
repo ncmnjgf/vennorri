@@ -6,7 +6,7 @@ import {
   FiShoppingCart,
   FiSearch,
   FiMenu,
-  FiX
+  FiX,
 } from "react-icons/fi";
 
 import "./Navbar.css";
@@ -14,84 +14,92 @@ import LoginModal from "./LoginModal";
 import SearchOverlay from "./SearchOverlay";
 
 export default function Navbar() {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  const isMenPage = location.pathname.startsWith("/men");
-  const isWomenPage = location.pathname.startsWith("/women");
+  const isMen = pathname.startsWith("/men");
+  const isWomen = pathname.startsWith("/women");
 
-  const isTransparent = isMenPage || isWomenPage;
-
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
 
-  const closeMobileMenu = () => setMobileOpen(false);
+  const closeMenu = () => {
+    setMobileOpen(false);
+    setOpenMenu(null);
+  };
 
   return (
     <>
       <nav
         className={`navbar ${
-          isTransparent ? "navbar--transparent" : "navbar--solid"
+          isMen || isWomen ? "navbar--transparent" : "navbar--solid"
         }`}
       >
-        {/* HAMBURGER (Mobile Only) */}
+        {/* HAMBURGER */}
         <div className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <FiX size={26} /> : <FiMenu size={26} />}
         </div>
 
-        {/* LEFT SECTION */}
+        {/* LEFT NAV */}
         <div className={`nav-left ${mobileOpen ? "active" : ""}`}>
+          
           {/* WOMEN */}
-          <div className="nav-item">
+          <div
+            className={`nav-item ${openMenu === "women" ? "open" : ""}`}
+            onClick={() =>
+              setOpenMenu(openMenu === "women" ? null : "women")
+            }
+          >
             <Link
               to="/women"
-              onClick={closeMobileMenu}
-              className={`nav-link nav-link-women ${
-                isWomenPage ? "active" : ""
-              }`}
+              className={`nav-link ${isWomen ? "active" : ""}`}
             >
               WOMEN
             </Link>
 
             <div className="dropdown">
-              <Link to="/women/funky" onClick={closeMobileMenu}>
+              <Link to="/women/funky" onClick={closeMenu}>
                 Funky
               </Link>
-              <Link to="/women/premium" onClick={closeMobileMenu}>
+              <Link to="/women/premium" onClick={closeMenu}>
                 Premium
               </Link>
             </div>
           </div>
 
           {/* MEN */}
-          <div className="nav-item">
+          <div
+            className={`nav-item ${openMenu === "men" ? "open" : ""}`}
+            onClick={() =>
+              setOpenMenu(openMenu === "men" ? null : "men")
+            }
+          >
             <Link
               to="/men"
-              onClick={closeMobileMenu}
-              className={`nav-link nav-link-men ${
-                isMenPage ? "active" : ""
-              }`}
+              className={`nav-link ${isMen ? "active" : ""}`}
             >
               MEN
             </Link>
 
             <div className="dropdown">
-              <Link to="/men/funky" onClick={closeMobileMenu}>
+              <Link to="/men/funky" onClick={closeMenu}>
                 Funky
               </Link>
-              <Link to="/men/premium" onClick={closeMobileMenu}>
+              <Link to="/men/premium" onClick={closeMenu}>
                 Premium
               </Link>
             </div>
           </div>
+
         </div>
 
         {/* LOGO */}
-        <Link to="/" className="text-logo" onClick={closeMobileMenu}>
+        <Link to="/" className="text-logo" onClick={closeMenu}>
           Vennoirr
         </Link>
 
-        {/* RIGHT SECTION */}
+        {/* RIGHT NAV */}
         <div className="nav-right">
           <FiUser
             size={22}
@@ -99,11 +107,11 @@ export default function Navbar() {
             onClick={() => setShowLogin(true)}
           />
 
-          <Link to="/wishlist" onClick={closeMobileMenu}>
+          <Link to="/wishlist" onClick={closeMenu}>
             <FiHeart size={22} className="nav-icon" />
           </Link>
 
-          <Link to="/cart" onClick={closeMobileMenu}>
+          <Link to="/cart" onClick={closeMenu}>
             <FiShoppingCart size={22} className="nav-icon" />
           </Link>
 
@@ -115,18 +123,14 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Overlay for mobile menu */}
+      {/* MOBILE OVERLAY */}
       {mobileOpen && (
-        <div className="mobile-overlay" onClick={closeMobileMenu}></div>
+        <div className="mobile-overlay" onClick={closeMenu}></div>
       )}
 
-      {/* Login Modal */}
+      {/* MODALS */}
       {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
-
-      {/* Search Overlay */}
-      {showSearch && (
-        <SearchOverlay onClose={() => setShowSearch(false)} />
-      )}
+      {showSearch && <SearchOverlay onClose={() => setShowSearch(false)} />}
     </>
   );
 }
