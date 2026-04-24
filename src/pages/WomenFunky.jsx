@@ -1,9 +1,12 @@
-import React from 'react'
+import ProductGrid from "../components/ProductGrid";
 
-const WomenFunky = () => {
+export default function WomenFunky() {
   return (
-    <div>WomenFunky</div>
-  )
+    <div style={{ paddingTop: "var(--navbar-height)" }}>
+      <div className="filter-bar">
+        <span className="result-count">WOMEN — FUNKY COLLECTION</span>
+      </div>
+      <ProductGrid category="women" subcategory="funky" />
+    </div>
+  );
 }
-
-export default WomenFunky

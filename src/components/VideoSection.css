@@ -1,0 +1,272 @@
+/* =============================
+   EXPLORE OUR COLLECTION – VIDEO CARDS
+   ============================= */
+
+/* ─── Section wrapper ─── */
+.vc-section {
+  width: 100%;
+  padding: 60px 0 70px;
+  background: #fff;
+}
+
+/* ─── Heading ─── */
+.vc-title {
+  text-align: center;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: clamp(22px, 3.2vw, 34px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 36px;
+  color: var(--text-primary, #111);
+}
+
+/* ─── Viewport (holds arrows + scrollable row) ─── */
+.vc-viewport {
+  position: relative;
+  width: 100%;
+  padding: 0 var(--container-padding, 50px);
+}
+
+/* ─── Horizontal scroll row ─── */
+.vc-row {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 6px;
+}
+
+.vc-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Individual card ─── */
+.vc-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(240px, 22vw, 310px);
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #1a1a1a;
+  scroll-snap-align: start;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s ease;
+}
+
+.vc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+/* ─── Poster image ─── */
+.vc-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vc-card:hover .vc-poster {
+  transform: scale(1.05);
+}
+
+/* ─── Bottom gradient ─── */
+.vc-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── Instagram handle ─── */
+.vc-handle {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  z-index: 4;
+  opacity: 0.92;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ─── Shopping bag button ─── */
+.vc-bag-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  color: #111;
+  transition: transform 0.25s ease, background 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.vc-bag-btn:hover {
+  transform: scale(1.12);
+  background: #fff;
+}
+
+/* ─── Centered play button ─── */
+.vc-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  z-index: 4;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  opacity: 0.9;
+}
+
+.vc-card:hover .vc-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+}
+
+/* ─── Caption ─── */
+.vc-caption {
+  position: absolute;
+  bottom: 18px;
+  left: 16px;
+  right: 16px;
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.45;
+  z-index: 4;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Navigation arrows ─── */
+.vc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: #111;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.vc-arrow:hover {
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+}
+
+.vc-arrow--left {
+  left: max(8px, calc(var(--container-padding, 50px) - 22px));
+}
+
+.vc-arrow--right {
+  right: max(8px, calc(var(--container-padding, 50px) - 22px));
+}
+
+/* =============================
+   RESPONSIVE
+   ============================= */
+@media (max-width: 1024px) {
+  .vc-card {
+    width: clamp(200px, 35vw, 280px);
+  }
+}
+
+@media (max-width: 768px) {
+  .vc-section {
+    padding: 44px 0 52px;
+  }
+
+  .vc-viewport {
+    padding: 0 16px;
+  }
+
+  .vc-card {
+    width: clamp(200px, 56vw, 260px);
+  }
+
+  .vc-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .vc-arrow--left {
+    left: 4px;
+  }
+
+  .vc-arrow--right {
+    right: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vc-card {
+    width: 72vw;
+  }
+
+  .vc-title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .vc-play {
+    width: 48px;
+    height: 48px;
+  }
+
+  .vc-play svg {
+    width: 26px;
+    height: 26px;
+  }
+}

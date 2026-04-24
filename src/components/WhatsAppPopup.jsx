@@ -1,20 +1,15 @@
-import "../styles/whatsappPopup.css";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppPopup() {
   return (
     <a
-      href="https://wa.me/1234567890"   // 🔁 Replace with your WhatsApp number
+      href="https://wa.me/1234567890"
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-popup"
+      className="whatsapp-float"
       aria-label="Chat on WhatsApp"
     >
-      <img
-        src="/images/whatsapp.png"            // 🔁 Place whatsapp.png in public folder
-        alt="WhatsApp"
-        className="whatsapp-icon"
-      />
-      <span className="whatsapp-text">Chat with us</span>
+      <FaWhatsapp />
     </a>
   );
 }

@@ -1,19 +1,24 @@
+import products from "../data/products";
 import ProductCard from "./ProductCard";
-import useProducts from "../hooks/useProducts";
-import "../styles/ProductGrid.css";
 
-export default function ProductGrid({ category }) {
-  const products = useProducts();
+export default function ProductGrid({ category, subcategory }) {
+  let filtered = products;
 
-  const filtered = category
-    ? products.filter(p =>
-        p.category.toLowerCase().includes(category.toLowerCase())
-      )
-    : products;
+  if (category) {
+    filtered = filtered.filter(
+      (p) => p.category.toLowerCase() === category.toLowerCase()
+    );
+  }
+
+  if (subcategory) {
+    filtered = filtered.filter(
+      (p) => p.subcategory.toLowerCase() === subcategory.toLowerCase()
+    );
+  }
 
   return (
-    <div className="grid">
-      {filtered.map(p => (
+    <div className="product-grid" style={{ padding: "40px var(--container-padding)" }}>
+      {filtered.map((p) => (
         <ProductCard key={p.id} product={p} />
       ))}
     </div>

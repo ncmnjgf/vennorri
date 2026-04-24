@@ -2,39 +2,54 @@ import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 export default function ProductSidebar({ product, close }) {
-  if (!product) return null; // 🚑 HARD GUARD
-
   const { addToCart } = useContext(CartContext);
-  const [size, setSize] = useState("M");
+  const [size, setSize] = useState("");
+
+  if (!product) return null;
+
+  const sizes = product.sizes || ["S", "M", "L", "XL"];
+
+  const handleAdd = () => {
+    const selectedSize = size || sizes[1] || sizes[0];
+    addToCart({ ...product, size: selectedSize, qty: 1 });
+    close();
+  };
 
   return (
-    <div className="sidebar">
-      <button className="close" onClick={close}>×</button>
+    <>
+      <div className="product-sidebar-overlay" onClick={close}></div>
+      <div className="product-sidebar">
+        <button className="sidebar-close" onClick={close}>✕</button>
 
-      <h3>{product.title}</h3>
-      <p>₹ {Math.floor(product.price * 80)}</p>
+        <img src={product.image} alt={product.title} className="sidebar-image" />
 
-      <div className="sizes">
-        {["S","M","L","XL"].map(s => (
-          <button
-            key={s}
-            className={size === s ? "active" : ""}
-            onClick={() => setSize(s)}
-          >
-            {s}
-          </button>
-        ))}
+        <h3>{product.title}</h3>
+        <p className="sidebar-price">
+          ₹{product.price}
+          {product.originalPrice && (
+            <span className="original">₹{product.originalPrice}</span>
+          )}
+        </p>
+
+        <div className="size-selector">
+          <label>Select Size</label>
+          <div className="size-options">
+            {sizes.map((s) => (
+              <button
+                key={s}
+                className={size === s ? "active" : ""}
+                onClick={() => setSize(s)}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button className="add-to-cart-btn" onClick={handleAdd}>
+          ADD TO CART
+        </button>
       </div>
-
-      <button
-        className="add-btn"
-        onClick={() => {
-          addToCart({ ...product, size, qty: 1 });
-          close();
-        }}
-      >
-        ADD TO CART
-      </button>
-    </div>
+    </>
   );
 }

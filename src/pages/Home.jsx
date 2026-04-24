@@ -1,7 +1,9 @@
 import { useState } from "react";
 import HeroBanner from "../components/HeroBanner";
-import VideoCards from "../components/VideoCards";
-import ProductGrid from "../components/ProductGrid";
+import NewArrivals from "../components/NewArrivals";
+import BestSellers from "../components/BestSellers";
+import CollectionBanner from "../components/CollectionBanner";
+import VideoSection from "../components/VideoSection";
 import ProductSidebar from "../components/ProductSidebar";
 
 export default function Home() {
@@ -10,13 +12,15 @@ export default function Home() {
   return (
     <div>
       <HeroBanner />
-      <ProductGrid openSidebar={setSelectedProduct} />
+      <NewArrivals />
+      <CollectionBanner />
+      <BestSellers />
+      <VideoSection />
 
       <ProductSidebar
         product={selectedProduct}
         close={() => setSelectedProduct(null)}
       />
-      <VideoCards />
     </div>
   );
 }
