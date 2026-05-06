@@ -1,0 +1,153 @@
+/* Category Header UI reflecting Bonkers Corner Screenshot */
+
+.category-header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Hero Static Section */
+.category-hero-static {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 45vh, 450px);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  padding: 0 var(--container-padding);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.category-breadcrumbs {
+  position: absolute;
+  top: clamp(80px, 10vh, 120px);
+  left: var(--container-padding);
+  font-size: 11px;
+  font-family: var(--font-body);
+  letter-spacing: 0.5px;
+  z-index: 2;
+  text-transform: capitalize;
+}
+
+.category-breadcrumbs a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color var(--transition-fast);
+}
+
+.category-breadcrumbs span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.category-breadcrumbs a:hover {
+  color: var(--white);
+}
+
+.category-hero-title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 6vw, 64px);
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* 2. Description Section */
+.category-description-section {
+  padding: 30px var(--container-padding);
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.category-desc-text {
+  font-size: clamp(12px, 1vw, 14px);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-family: var(--font-body);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-desc-text.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+.read-more-btn {
+  margin-top: 8px;
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: underline;
+  color: var(--text-primary);
+  text-underline-offset: 4px;
+}
+
+/* 3. Filter Bar */
+.category-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--container-padding);
+  border-top: 1px solid var(--grey-200);
+  border-bottom: 1px solid var(--grey-200);
+  background: var(--white);
+}
+
+.filter-left, .filter-right {
+  display: flex;
+  align-items: center;
+}
+
+.filter-sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.filter-right {
+  gap: 24px;
+}
+
+.featured-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.product-count {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}

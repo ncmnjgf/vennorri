@@ -1,48 +1,21 @@
-import { useState, useEffect } from "react";
-import slides from "../data/slides";
 import ProductGrid from "../components/ProductGrid";
+import CategoryHeader from "../components/CategoryHeader";
+import slides from "../data/slides";
 
 export default function Men() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
-      <section className="category-hero">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`category-hero-slide ${index === currentSlide ? "active" : ""}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
-            <div className="category-hero-content">
-              <p className="tagline">{slide.tagline}</p>
-              <h1>{slide.title}</h1>
-              <button className="hero-cta">{slide.button}</button>
-            </div>
-          </div>
-        ))}
-        <div className="category-dots">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === currentSlide ? "active" : ""}`}
-              onClick={() => setCurrentSlide(index)}
-            />
-          ))}
-        </div>
-      </section>
-
-      <div className="filter-bar">
-        <span className="result-count">MEN'S COLLECTION</span>
-      </div>
-
+      <CategoryHeader 
+        title="MEN'S COLLECTION"
+        breadcrumbList={[
+          { label: "Home", path: "/" },
+          { label: "Shop", path: "/men" },
+          { label: "Men", path: "/men" }
+        ]}
+        image={slides[0].image}
+        description="Stay cool and confident with Bonkers Corner's menswear collection - your go-to for easy layering and everyday streetwear comfort. Elevate your wardrobe with premium fabrics and modern drops."
+        count={89}
+      />
       <ProductGrid category="men" />
     </>
   );
