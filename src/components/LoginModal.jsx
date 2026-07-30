@@ -58,14 +58,14 @@ export default function LoginModal({ onClose }) {
     setLoading(true);
     setError(null);
 
-    // Bypass for test number
-    if (mobile === '9999999999') {
-      window.isMockLogin = true;
-      setStep("OTP");
-      setTimeLeft(30);
-      setLoading(false);
-      return;
-    }
+    // // Bypass for test number (Disabled for production)
+    // if (mobile === '9999999999') {
+    //   window.isMockLogin = true;
+    //   setStep("OTP");
+    //   setTimeLeft(30);
+    //   setLoading(false);
+    //   return;
+    // }
 
     try {
       const phoneNumber = '+91' + mobile;

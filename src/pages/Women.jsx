@@ -12,7 +12,7 @@ export default function Women() {
           { label: "Shop", path: "/women" },
           { label: "Women", path: "/women" }
         ]}
-        images={["/images/new_slide_1.png", "/images/new_slide_2.png", "/images/new_slide_3.png", womenBannerImage]}
+        image={womenBannerImage}
         description="Stay cool and confident with Bonkers Corner's womenswear collection - your go-to for easy layering and everyday streetwear comfort."
         count={54}
       />

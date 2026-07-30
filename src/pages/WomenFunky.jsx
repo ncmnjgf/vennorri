@@ -11,11 +11,11 @@ export default function WomenFunky() {
           { label: "Women", path: "/women" },
           { label: "Funky", path: "/women/funky" }
         ]}
-        image="/images/hero4.jpg"
-        description="Vibrant colors, eye-catching graphics, and expressive streetwear for women."
-        count={34}
+        image="/images/hero5.jpg"
+        description="Sophisticated streetwear tailored from luxury fabrics."
+        count={28}
       />
-      <ProductGrid category="women" subcategory="funky" />
+      <ProductGrid category="women" subcategory="premium" />
     </>
   );
 }

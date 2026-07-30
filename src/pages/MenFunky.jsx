@@ -1,5 +1,6 @@
 import ProductGrid from "../components/ProductGrid";
 import CategoryHeader from "../components/CategoryHeader";
+import menBannerImage from "../assets/images/Hero Image.png";
 
 export default function MenFunky() {
   return (
@@ -11,11 +12,11 @@ export default function MenFunky() {
           { label: "Men", path: "/men" },
           { label: "Funky", path: "/men/funky" }
         ]}
-        image="/images/hero3.jpg"
-        description="Bold colors, loud graphics, and oversized fits for out-of-the-box style."
-        count={23}
+        image={menBannerImage}
+        description="Luxury streetwear essentials with high-end fabrics."
+        count={18}
       />
-      <ProductGrid category="men" subcategory="funky" />
+      <ProductGrid category="men" subcategory="premium" />
     </>
   );
 }
