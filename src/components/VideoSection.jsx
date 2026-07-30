@@ -1,4 +1,6 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, useContext } from "react";
+import { FiHeart } from "react-icons/fi";
+import { WishlistContext } from "../context/WishlistContext";
 import "./VideoSection.css";
 
 const videoCards = [
@@ -119,6 +121,21 @@ function ArrowIcon({ direction }) {
 
 /* ─── Single Video Card ─── */
 function VideoCard({ card }) {
+  const { wishlist, toggleWishlist } = useContext(WishlistContext);
+  const videoWishlistItemId = `video-${card.id}`;
+  const isWishlisted = wishlist.some((item) => item.id === videoWishlistItemId);
+
+  const handleWishlist = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleWishlist({
+      id: videoWishlistItemId,
+      title: card.caption,
+      image: card.poster,
+      isVideo: true,
+    });
+  };
+
   return (
     <div className="vc-card">
       {/* Poster Image */}
@@ -139,6 +156,15 @@ function VideoCard({ card }) {
           <BagIcon />
         </button>
       )}
+
+      {/* Wishlist Button */}
+      <button
+        className={`vc-wishlist-btn ${isWishlisted ? "liked" : ""}`}
+        onClick={handleWishlist}
+        aria-label="Wishlist"
+      >
+        <FiHeart />
+      </button>
 
       {/* Centered play button */}
       <div className="vc-play">

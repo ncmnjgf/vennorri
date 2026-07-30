@@ -1,14 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { FiHeart, FiChevronDown, FiChevronUp } from "react-icons/fi";
-import products from "../data/products";
+import useProducts from "../hooks/useProducts";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
 import ProductCard from "../components/ProductCard";
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const product = products.find((p) => p.id === Number(id));
+  const { products } = useProducts();
+  const product = products.find((p) => p._id === id || String(p.id) === String(id));
   const { addToCart } = useContext(CartContext);
   const { wishlist, toggleWishlist } = useContext(WishlistContext);
 
@@ -28,11 +29,11 @@ export default function ProductDetail() {
     );
   }
 
-  const isWishlisted = wishlist.some((item) => item.id === product.id);
+  const isWishlisted = wishlist.some((item) => (item._id || item.id) === (product._id || product.id));
   const sizes = product.sizes || ["S", "M", "L", "XL"];
 
   const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
+    .filter((p) => p.category === product.category && (p._id || p.id) !== (product._id || product.id))
     .slice(0, 4);
 
   const handleAddToCart = () => {
@@ -51,11 +52,11 @@ export default function ProductDetail() {
       }}>
         <Link to="/" style={{ color: "var(--text-secondary)" }}>Home</Link>
         {" / "}
-        <Link to={`/${product.category}`} style={{ color: "var(--text-secondary)", textTransform: "capitalize" }}>
-          {product.category}
+        <Link to={`/${product.category?.slug || product.category}`} style={{ color: "var(--text-secondary)", textTransform: "capitalize" }}>
+          {product.category?.name || product.category}
         </Link>
         {" / "}
-        <span style={{ color: "var(--text-primary)" }}>{product.title}</span>
+        <span style={{ color: "var(--text-primary)" }}>{product.title || product.name}</span>
       </div>
 
       {/* PRODUCT LAYOUT */}
@@ -63,20 +64,20 @@ export default function ProductDetail() {
         {/* LEFT: IMAGES */}
         <div className="pdp-images">
           <img
-            src={product.image}
-            alt={product.title}
+            src={product.image || product.images?.[0] || ""}
+            alt={product.title || product.name}
             className="pdp-main-img"
           />
-          {product.hoverImage && (
+          {(product.hoverImage || product.images?.[1]) && (
             <img
-              src={product.hoverImage}
-              alt={product.title}
+              src={product.hoverImage || product.images?.[1]}
+              alt={product.title || product.name}
               className="pdp-secondary-img"
             />
           )}
           <img
-            src={product.image}
-            alt={product.title}
+            src={product.image || product.images?.[0] || ""}
+            alt={product.title || product.name}
             className="pdp-secondary-img"
           />
         </div>
@@ -87,12 +88,12 @@ export default function ProductDetail() {
             <span className="pdp-badge">SAVE {product.discount}%</span>
           )}
 
-          <h1 className="pdp-title">{product.title}</h1>
+          <h1 className="pdp-title">{product.title || product.name}</h1>
 
           <div className="pdp-price-row">
             <span className="pdp-price">₹{product.price}</span>
-            {product.originalPrice && (
-              <span className="pdp-original">₹{product.originalPrice}</span>
+            {(product.originalPrice || product.mrp) && (
+              <span className="pdp-original">₹{product.originalPrice || product.mrp}</span>
             )}
             {product.discount > 0 && (
               <span className="pdp-discount">({product.discount}% OFF)</span>
@@ -161,7 +162,7 @@ export default function ProductDetail() {
           </div>
           <div className="product-grid" style={{ padding: 0 }}>
             {relatedProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <ProductCard key={p._id || p.id} product={p} />
             ))}
           </div>
         </div>

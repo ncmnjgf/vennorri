@@ -1,0 +1,26 @@
+
+> fashion-store@0.0.0 lint
+> eslint .
+
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\components\LoginModal.jsx
+  31:22  error  'response' is defined but never used  no-unused-vars
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\components\PhoneInput.jsx
+  23:23  error  'otp' is defined but never used  no-unused-vars
+  52:10  error  'error' is not defined           no-undef
+  52:46  error  'error' is not defined           no-undef
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\context\AuthContext.jsx
+  25:57  error  'firebaseUser' is defined but never used  no-unused-vars
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\context\CartContext.jsx
+  52:20  error  'e' is defined but never used  no-unused-vars
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\pages\CheckoutPage.jsx
+   34:6   warning  React Hook useEffect has missing dependencies: 'cart.length', 'loading', and 'navigate'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  119:19  error    'err' is defined but never used                                                                                                              no-unused-vars
+  133:43  error    'response' is defined but never used                                                                                                         no-unused-vars
+
+Γ£û 9 problems (8 errors, 1 warning)
+

@@ -8,16 +8,19 @@ import {
   FiMenu,
   FiX,
   FiChevronDown,
+  FiLogOut
 } from "react-icons/fi";
 
 import "./Navbar.css";
 import LoginModal from "./LoginModal";
 import SearchOverlay from "./SearchOverlay";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
   const { pathname } = useLocation();
   const { cart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
 
   const isMen = pathname.startsWith("/men");
   const isWomen = pathname.startsWith("/women");
@@ -31,6 +34,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setMobileOpen(false);
+    setOpenMenu(null);
+  }
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -41,12 +51,6 @@ export default function Navbar() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMobileOpen(false);
-    setOpenMenu(null);
-  }, [pathname]);
 
   // Lock body scroll when mobile drawer is open
   useEffect(() => {
@@ -181,11 +185,15 @@ export default function Navbar() {
               onClick={() => setShowSearch(true)}
             />
 
-            <FiUser
-              size={20}
-              className="nav-icon"
-              onClick={() => setShowLogin(true)}
-            />
+            {user ? (
+              <Link to="/account" onClick={closeMenu} className="user-icon-wrap">
+                <FiUser size={20} className="nav-icon" />
+              </Link>
+            ) : (
+              <div className="user-icon-wrap" style={{ cursor: "pointer" }} onClick={() => { closeMenu(); setShowLogin(true); }}>
+                <FiUser size={20} className="nav-icon" />
+              </div>
+            )}
 
             <Link to="/wishlist" onClick={closeMenu} className="wishlist-icon-wrap">
               <FiHeart size={20} className="nav-icon" />

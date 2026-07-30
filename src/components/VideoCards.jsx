@@ -1,3 +1,4 @@
+import { FiHeart } from "react-icons/fi";
 import "../styles/videocards.css";
 
 export default function VideoCards() {
@@ -8,8 +9,10 @@ export default function VideoCards() {
       <div className="collection-row">
         {[1, 2, 3, 4, 5, 6].map((_, i) => (
           <div className="collection-card skeleton" key={i}>
+            <button className="video-wishlist-btn">
+              <FiHeart strokeWidth={1.2} fill="none" />
+            </button>
             <div className="skeleton-text"></div>
-            <div className="skeleton-bag"></div>
           </div>
         ))}
       </div>

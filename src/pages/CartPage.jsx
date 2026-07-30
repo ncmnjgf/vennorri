@@ -51,7 +51,7 @@ export default function CartPage() {
               <span>Total</span>
               <span>₹{cartTotal >= 999 ? cartTotal : cartTotal + 99}</span>
             </div>
-            <button className="checkout-btn">PROCEED TO CHECKOUT</button>
+            <Link to="/checkout" className="checkout-btn" style={{ display: 'block', textAlign: 'center' }}>PROCEED TO CHECKOUT</Link>
           </div>
         </div>
       )}

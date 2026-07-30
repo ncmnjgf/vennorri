@@ -1,0 +1,150 @@
+.account-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 20px;
+    font-family: inherit;
+}
+
+.account-card {
+    display: flex;
+    background-color: #fafafa;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.account-sidebar {
+    width: 250px;
+    border-right: 1px solid #eaeaea;
+    padding: 30px 0;
+}
+
+.account-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.account-sidebar li:hover {
+    background-color: #f0f0f0;
+}
+
+.account-sidebar li.active {
+    font-weight: 600;
+}
+
+/* Optional active left border indicator */
+.account-sidebar li.active {
+    border-left: 2px solid #000;
+}
+
+.sidebar-icon {
+    margin-right: 12px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.logout-button {
+    margin-top: 20px;
+}
+
+.account-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #fafafa;
+}
+
+.empty-message {
+    color: #666;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/* Account Details Info View styling */
+.account-details-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account-details-view h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.details-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.details-label {
+    font-weight: 600;
+    color: #666;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.details-value {
+    color: #000;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .account-card {
+        flex-direction: column;
+    }
+    
+    .account-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eaeaea;
+        padding: 15px 0;
+    }
+
+    .account-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    .account-sidebar li {
+        padding: 8px 12px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 20px;
+    }
+
+    .account-sidebar li.active {
+        border-left: 1px solid #eee;
+        background: #000;
+        color: #fff;
+    }
+    
+    .account-content {
+        padding: 20px;
+    }
+}
+

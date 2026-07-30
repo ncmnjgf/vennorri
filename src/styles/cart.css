@@ -28,3 +28,39 @@
   width: 100%;
   cursor: pointer;
 }
+
+/* Responsive Cart Grid */
+@media (max-width: 1024px) {
+  .cart-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cart-container {
+      padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Checkout Page Responsive Utilities */
+.checkout-address-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+  .checkout-address-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

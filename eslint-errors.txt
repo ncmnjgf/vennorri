@@ -1,0 +1,33 @@
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\components\Navbar.jsx
+  23:17  error  'logoutAuth' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\components\PhoneInput.jsx
+  16:20  error  'response' is defined but never used  no-unused-vars
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\context\AuthContext.jsx
+   5:14  error  Fast refresh only works when a file only exports components. Move your React context(s) to a separate file                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-refresh/only-export-components
+  16:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  14 |       const savedUser = localStorage.getItem('user_profile');
+  15 |       if (savedUser) {
+> 16 |         setUser(JSON.parse(savedUser));
+     |         ^^^^^^^ Avoid calling setState() directly within an effect
+  17 |       }
+  18 |       setLoading(false);
+  19 |       return;  react-hooks/set-state-in-effect
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\pages\Men.jsx
+  3:8  error  'slides' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\Tech Galaxy\Desktop\cloth\fashion-store\src\pages\Women.jsx
+  3:8  error  'slides' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 6 problems (6 errors, 0 warnings)
+

@@ -1,7 +1,8 @@
-import products from "../data/products";
+import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 
 export default function ProductGrid({ category, subcategory }) {
+  const { products } = useProducts({ category, subcategory });
   let filtered = products;
 
   if (category) {

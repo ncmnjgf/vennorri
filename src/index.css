@@ -83,6 +83,7 @@ button {
   border: none;
   background: none;
   font-family: inherit;
+  color: inherit;
 }
 
 ul, ol {
@@ -105,30 +106,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-header {
-  text-align: center;
-  margin-bottom: clamp(24px, 4vw, 48px);
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: left;
+  max-width: 1400px;
+  margin: 0 auto clamp(24px, 4vw, 42px);
+  padding: 0 var(--container-padding);
+}
+
+.section-title-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .section-header h2 {
   font-family: var(--font-heading);
-  font-size: clamp(24px, 4vw, 42px);
+  font-size: clamp(24px, 4vw, 36px);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  line-height: 1.1;
 }
 
 .section-header p {
-  font-size: clamp(13px, 1.2vw, 16px);
+  font-size: clamp(13px, 1.2vw, 15px);
   color: var(--text-secondary);
   letter-spacing: 0.5px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .section-header .shop-link {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 0;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--black);
@@ -140,6 +158,37 @@ h1, h2, h3, h4, h5, h6 {
 .section-header .shop-link:hover {
   color: var(--red);
   border-color: var(--red);
+}
+
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-nav button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #000000;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  transition: var(--transition-base);
+  padding: 0;
+}
+
+.carousel-nav button:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.carousel-nav button:focus {
+  outline: none;
 }
 
 /* =========================
@@ -232,6 +281,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top; /* Focuses on the top/center (often faces in fashion) */
+  image-rendering: high-quality; /* Suggests browser to use better scaling */
 }
 
 .hero-swiper .slide-overlay {
@@ -271,23 +322,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-swiper .slide-btn {
-  display: inline-block;
-  padding: 14px 42px;
-  border: 2px solid var(--white);
-  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  min-width: 160px;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 12px 36px;
+  border: none;
+  background: var(--white);
+  color: var(--black);
   font-family: var(--font-heading);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  background: transparent;
+  border-radius: 999px;
   cursor: pointer;
   transition: var(--transition-base);
 }
 
 .hero-swiper .slide-btn:hover {
-  background: var(--white);
-  color: var(--black);
+  background: var(--black);
+  color: var(--white);
+  transform: scale(1.05);
 }
 
 .hero-swiper .swiper-pagination-bullet {
@@ -354,6 +413,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gender-card .gender-overlay .explore-btn {
+  width:50%;
   padding: 10px 30px;
   border: 2px solid var(--white);
   color: var(--white);
@@ -384,6 +444,45 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 var(--container-padding);
 }
 
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .gender-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .gender-card {
+    height: clamp(250px, 45vh, 400px);
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .header-actions {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  /* No change in grid columns for mobile yet as 2 cols looks good for products */
+  .category-hero-content h1 {
+    font-size: 32px;
+  }
+}
+
+
 /* =========================
    PRODUCT CARD
 ========================= */
@@ -404,6 +503,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   object-fit: cover;
   transition: opacity 0.4s ease;
+  display: block;
 }
 
 .product-card .card-image .hover-img {
@@ -420,45 +520,67 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
 }
 
+.product-card .card-top-actions {
+  display: none;
+}
+
 .product-card .discount-badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 14px;
+  left: 14px;
   background: var(--red);
   color: var(--white);
   font-family: var(--font-heading);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 4px 8px;
   letter-spacing: 0.5px;
-  z-index: 2;
+  border-radius: 2px;
+  z-index: 5;
+  pointer-events: none;
 }
 
+/* Wishlist button is a sibling of .card-image, positioned by .product-card (position:relative) */
 .product-card .wishlist-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   width: 36px;
   height: 36px;
+  border: none;
   border-radius: 50%;
-  background: var(--white);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  z-index: 2;
-  transition: var(--transition-fast);
-  color: var(--black);
-  font-size: 16px;
+  cursor: pointer;
+  z-index: 20;
+  color: #111;
+  font-size: 18px;
+  transition: all 0.25s ease;
 }
+
+.product-card .wishlist-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+}
+
 
 .product-card .wishlist-btn:hover {
   transform: scale(1.1);
+  background: transparent;
+  color: var(--red);
 }
 
+
 .product-card .wishlist-btn.liked {
-  background: var(--red);
-  color: var(--white);
+  color: #e53935;
+}
+.product-card .wishlist-btn.liked svg {
+  fill: currentColor;
 }
 
 .product-card .quick-add {
@@ -498,6 +620,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -539,18 +662,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .product-carousel .swiper-button-next,
 .product-carousel .swiper-button-prev {
-  color: var(--black);
-  width: 44px;
-  height: 44px;
-  background: var(--white);
-  border-radius: 50%;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-}
-
-.product-carousel .swiper-button-next::after,
-.product-carousel .swiper-button-prev::after {
-  font-size: 16px;
-  font-weight: 900;
+  display: none !important;
 }
 
 /* =========================
@@ -1446,9 +1558,8 @@ h1, h2, h3, h4, h5, h6 {
 ========================= */
 .delivery-popup {
   position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 24px;
+  left: 24px;
   background: var(--black);
   color: var(--white);
   padding: 12px 24px;
@@ -1464,8 +1575,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes slideUp {
-  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
-  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .delivery-popup .delivery-close {
@@ -1540,6 +1651,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .scroll-top:hover {
   background: var(--grey-700);
+}
+
+.scroll-top svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  stroke-width: 3px !important;
+}
+
+.scroll-top svg line,
+.scroll-top svg polyline,
+.scroll-top svg path {
+  stroke: #ffffff !important;
+  fill: none !important;
 }
 
 /* =========================
@@ -1717,6 +1844,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 12px 20px;
   border: 1.5px solid var(--grey-300);
   background: var(--white);
+  color: var(--text-primary);
   font-family: var(--font-heading);
   font-size: 13px;
   font-weight: 600;
@@ -1747,20 +1875,41 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   border: 1px solid var(--grey-300);
+  background: var(--white);
+  height: 48px;
 }
 
 .pdp-qty-controls button {
-  padding: 10px 14px;
-  font-size: 16px;
+  width: 40px;
+  height: 100%;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grey-100);
+  color: var(--text-primary);
+  border: none;
+  transition: background-color 0.2s;
+  padding: 0;
+}
+
+.pdp-qty-controls button:hover {
+  background: var(--grey-200);
 }
 
 .pdp-qty-controls span {
-  padding: 10px 18px;
+  padding: 0 12px;
   font-weight: 600;
+  font-size: 15px;
   min-width: 40px;
   text-align: center;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .pdp-actions {
@@ -1788,13 +1937,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pdp-wish-btn {
-  padding: 16px 20px;
+  width: 56px;
+  padding: 0;
   border: 2px solid var(--black);
   background: var(--white);
   color: var(--black);
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   transition: all 0.3s;
 }
 

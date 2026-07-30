@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
@@ -12,6 +13,9 @@ import Home from "./pages/Home";
 import CartPage from "./pages/CartPage";
 import WishlistPage from "./pages/WishlistPage";
 import ProductDetail from "./pages/ProductDetail";
+import Login from "./pages/Login";
+import Account from "./pages/Account";
+import CheckoutPage from "./pages/CheckoutPage";
 
 import Men from "./pages/Men";
 import MenFunky from "./pages/MenFunky";
@@ -30,6 +34,7 @@ function App() {
       <DeliveryPopup />
       <WhatsAppPopup />
       <ScrollToTop />
+      <Toaster position="bottom-center" toastOptions={{ className: 'custom-toast', style: { borderRadius: '4px', background: '#333', color: '#fff' } }} />
       <Navbar />
 
       <Routes>
@@ -37,6 +42,9 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
 
         <Route path="/men">
           <Route index element={<Men />} />

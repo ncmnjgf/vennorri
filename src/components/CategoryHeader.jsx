@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
 import './CategoryHeader.css';
 
-export default function CategoryHeader({ title, breadcrumbList, image, description, count }) {
+export default function CategoryHeader({ title, breadcrumbList, image, images, description, count }) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const renderBackground = () => {
+    if (images && images.length > 0) {
+      return (
+        <Swiper
+          modules={[Autoplay, EffectFade, Pagination]}
+          effect="fade"
+          loop={true}
+          autoplay={{ delay: 4500, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          speed={1200}
+          className="category-header-swiper"
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
+        >
+          {images.map((img, idx) => (
+            <SwiperSlide key={idx}>
+              <div style={{ width: '100%', height: '100%', backgroundImage: `url("${img}")`, backgroundSize: 'cover', backgroundPosition: 'center top' }}></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      );
+    }
+    return (
+      <div style={{ backgroundImage: `url("${image}")`, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, backgroundSize: 'cover', backgroundPosition: 'center top' }}></div>
+    );
+  };
 
   return (
     <div className="category-header-container">
-      <div className="category-hero-static" style={{ backgroundImage: `url(${image})` }}>
-        <div className="category-overlay"></div>
-        <div className="category-breadcrumbs">
+      <div className="category-hero-static" style={{ position: 'relative', overflow: 'hidden' }}>
+        {renderBackground()}
+        <div className="category-overlay" style={{ position: 'relative', zIndex: 1 }}></div>
+        <div className="category-breadcrumbs" style={{ position: 'relative', zIndex: 1 }}>
           {breadcrumbList.map((bc, index) => (
             <span key={index}>
               <a href={bc.path}>{bc.label}</a>
@@ -16,7 +48,7 @@ export default function CategoryHeader({ title, breadcrumbList, image, descripti
             </span>
           ))}
         </div>
-        <h1 className="category-hero-title">{title}</h1>
+        <h1 className="category-hero-title" style={{ position: 'relative', zIndex: 1 }}>{title}</h1>
       </div>
       
       {description && (

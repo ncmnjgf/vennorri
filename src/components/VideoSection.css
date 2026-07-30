@@ -109,7 +109,6 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* ─── Shopping bag button ─── */
 .vc-bag-btn {
   position: absolute;
   top: 12px;
@@ -117,22 +116,76 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
+  background: transparent;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 4;
-  color: #111;
-  transition: transform 0.25s ease, background 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: #fff;
+  transition: transform 0.25s ease, color 0.25s ease;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+.vc-bag-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+  stroke-width: 2;
+  display: block;
 }
 
 .vc-bag-btn:hover {
   transform: scale(1.12);
-  background: #fff;
+  color: var(--red, #ff3c3c);
+  background: transparent;
+}
+
+/* ─── Video wishlist button ─── */
+.vc-wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 60px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  color: #fff;
+  font-size: 20px;
+  transition: transform 0.25s ease, color 0.25s ease;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+.vc-wishlist-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+  stroke-width: 2;
+}
+
+.vc-wishlist-btn:hover {
+  transform: scale(1.12);
+  color: var(--red, #ff3c3c);
+  background: transparent;
+}
+
+.vc-wishlist-btn.liked {
+  color: var(--red, #ff3c3c);
+}
+
+.vc-wishlist-btn.liked svg {
+  fill: currentColor;
 }
 
 /* ─── Centered play button ─── */
@@ -177,6 +230,7 @@
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

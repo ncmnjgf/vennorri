@@ -1,0 +1,13 @@
+
+==================================
+  FIREBASE ADMIN SDK TEST RESULT  
+==================================
+  Status : INITIALIZED 
+  Project: vennoirr-ad727
+  Email  : firebase-adminsdk-fbsvc@vennoirr-ad727.iam.gserviceaccount.com
+----------------------------------
+  Auth   : CONNECTED & WORKING!
+  Users  : 0 found
+    (No registered users yet ΓÇö totally normal)
+==================================
+

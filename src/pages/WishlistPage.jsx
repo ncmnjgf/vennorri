@@ -26,57 +26,92 @@ export default function WishlistPage() {
         <div className="product-grid" style={{ padding: 0 }}>
           {wishlist.map((product) => (
             <div key={product.id} className="product-card" style={{ pointerEvents: "auto" }}>
-              <Link to={`/product/${product.id}`}>
+              {product.isVideo ? (
                 <div className="card-image">
                   <img src={product.image} alt={product.title} className="primary-img" />
-                  {product.discount > 0 && (
-                    <span className="discount-badge">SAVE {product.discount}%</span>
-                  )}
                 </div>
-              </Link>
+              ) : (
+                <Link to={`/product/${product.id}`}>
+                  <div className="card-image">
+                    <img src={product.image} alt={product.title} className="primary-img" />
+                    {product.discount > 0 && (
+                      <span className="discount-badge">SAVE {product.discount}%</span>
+                    )}
+                  </div>
+                </Link>
+              )}
 
               <div className="card-info">
                 <h4>{product.title}</h4>
-                <div className="price-row">
-                  <span className="sale-price">₹{product.price}</span>
-                  {product.originalPrice && (
-                    <span className="original-price">₹{product.originalPrice}</span>
-                  )}
-                </div>
+                {!product.isVideo && (
+                  <div className="price-row">
+                    <span className="sale-price">₹{product.price}</span>
+                    {product.originalPrice && (
+                      <span className="original-price">₹{product.originalPrice}</span>
+                    )}
+                  </div>
+                )}
                 <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-                  <button
-                    onClick={() => handleMoveToCart(product)}
-                    style={{
-                      flex: 1,
-                      padding: "10px",
-                      background: "var(--black)",
-                      color: "var(--white)",
-                      fontFamily: "var(--font-heading)",
-                      fontSize: "11px",
-                      fontWeight: 700,
-                      letterSpacing: "1px",
-                      textTransform: "uppercase",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "6px",
-                    }}
-                  >
-                    <FiShoppingBag size={14} /> MOVE TO CART
-                  </button>
-                  <button
-                    onClick={() => removeFromWishlist(product.id)}
-                    style={{
-                      padding: "10px 14px",
-                      border: "1px solid var(--grey-300)",
-                      background: "var(--white)",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <FiTrash2 size={16} />
-                  </button>
+                  {!product.isVideo ? (
+                    <>
+                      <button
+                        onClick={() => handleMoveToCart(product)}
+                        style={{
+                          flex: 1,
+                          padding: "10px",
+                          background: "var(--black)",
+                          color: "var(--white)",
+                          fontFamily: "var(--font-heading)",
+                          fontSize: "11px",
+                          fontWeight: 700,
+                          letterSpacing: "1px",
+                          textTransform: "uppercase",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "6px",
+                        }}
+                      >
+                        <FiShoppingBag size={14} /> MOVE TO CART
+                      </button>
+                      <button
+                        onClick={() => removeFromWishlist(product.id)}
+                        style={{
+                          padding: "10px 14px",
+                          border: "1px solid var(--grey-300)",
+                          background: "var(--white)",
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <FiTrash2 size={16} />
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => removeFromWishlist(product.id)}
+                      style={{
+                        flex: 1,
+                        padding: "10px",
+                        border: "1px solid var(--black)",
+                        background: "var(--white)",
+                        color: "var(--black)",
+                        fontFamily: "var(--font-heading)",
+                        fontSize: "11px",
+                        fontWeight: 700,
+                        letterSpacing: "1px",
+                        textTransform: "uppercase",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <FiTrash2 size={16} /> REMOVE
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
