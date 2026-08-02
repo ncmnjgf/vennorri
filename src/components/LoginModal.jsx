@@ -32,6 +32,7 @@ export default function LoginModal({ onClose }) {
       }
       window.recaptchaVerifier = new RecaptchaVerifier(auth, 'login-recaptcha-container', {
         'size': 'invisible',
+        'sitekey': import.meta.env.VITE_RECAPTCHA_SITE_KEY,
         'callback': () => {}
       });
     }
