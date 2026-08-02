@@ -25,21 +25,25 @@ export default function LoginModal({ onClose }) {
   }, [step, timeLeft]);
 
   useEffect(() => {
-    if (auth) {
-      if (window.recaptchaVerifier) {
-        window.recaptchaVerifier.clear();
-        window.recaptchaVerifier = null;
+    const timer = setTimeout(() => {
+      const container = document.getElementById('login-recaptcha-container');
+      if (auth && container) {
+        if (window.recaptchaVerifier) {
+          try { window.recaptchaVerifier.clear(); } catch (_) {}
+          window.recaptchaVerifier = null;
+        }
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'login-recaptcha-container', {
+          'size': 'invisible',
+          'sitekey': import.meta.env.VITE_RECAPTCHA_SITE_KEY,
+          'callback': () => {}
+        });
       }
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'login-recaptcha-container', {
-        'size': 'invisible',
-        'sitekey': import.meta.env.VITE_RECAPTCHA_SITE_KEY,
-        'callback': () => {}
-      });
-    }
+    }, 300);
 
     return () => {
+      clearTimeout(timer);
       if (window.recaptchaVerifier) {
-        window.recaptchaVerifier.clear();
+        try { window.recaptchaVerifier.clear(); } catch (_) {}
         window.recaptchaVerifier = null;
       }
     };
