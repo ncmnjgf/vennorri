@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { WishlistContext } from "../context/WishlistContext";
 import { CartContext } from "../context/CartContext";
 import { FiTrash2, FiShoppingBag } from "react-icons/fi";
+import { optimizeImage } from "../utils/imageOptimization";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist } = useContext(WishlistContext);
@@ -28,12 +29,12 @@ export default function WishlistPage() {
             <div key={product.id} className="product-card" style={{ pointerEvents: "auto" }}>
               {product.isVideo ? (
                 <div className="card-image">
-                  <img src={product.image} alt={product.title} className="primary-img" />
+                  <img src={optimizeImage(product.image || product.images?.[0]?.url || product.images?.[0] || "", 600)} alt={product.title} className="primary-img" loading="lazy" />
                 </div>
               ) : (
                 <Link to={`/product/${product.id}`}>
                   <div className="card-image">
-                    <img src={product.image} alt={product.title} className="primary-img" />
+                    <img src={optimizeImage(product.image || product.images?.[0]?.url || product.images?.[0] || "", 600)} alt={product.title} className="primary-img" loading="lazy" />
                     {product.discount > 0 && (
                       <span className="discount-badge">SAVE {product.discount}%</span>
                     )}

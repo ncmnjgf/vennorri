@@ -96,12 +96,13 @@ export default function CheckoutPage() {
 
       // 3. Setup Razorpay Modal Options
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || rzpData.key_id, 
-        amount: rzpData.amount || (orderData.totalAmount * 100),
-        currency: rzpData.currency || "INR",
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID || rzpData.key_id,
+        // Backend returns totalAmount in INR; Razorpay SDK needs paise (×100)
+        amount: Math.round((rzpData.amount || orderData.totalAmount) * 100),
+        currency: "INR",
         name: "VENNOIRR",
         description: "Order #" + orderData.orderNumber,
-        order_id: rzpData.razorpayOrderId || rzpData.id,
+        order_id: rzpData.razorpayOrderId,
         handler: async function (response) {
           try {
             // 4. Verify Payment

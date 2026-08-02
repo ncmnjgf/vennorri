@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
+import { optimizeImage } from "../utils/imageOptimization";
 
 export default function ProductCard({ product, openSidebar }) {
   const { addToCart } = useContext(CartContext);
@@ -36,22 +37,26 @@ export default function ProductCard({ product, openSidebar }) {
     <Link to={`/product/${productId}`} className="product-card">
       <div className="card-image">
         <img
-          src={product.image || product.images?.[0] || ""}
+          src={optimizeImage(product.image || product.images?.[0]?.url || product.images?.[0] || "", 600)}
           alt={product.title || product.name}
           className="primary-img"
+          loading="lazy"
+          decoding="async"
         />
 
-        {(product.hoverImage || product.images?.[1]) && (
+        {(product.hoverImage || product.images?.[1]?.url || product.images?.[1]) && (
           <img
-            src={product.hoverImage || product.images?.[1]}
+            src={optimizeImage(product.hoverImage || product.images?.[1]?.url || product.images?.[1] || "", 600)}
             alt={product.title || product.name}
             className="hover-img"
+            loading="lazy"
+            decoding="async"
           />
         )}
 
-        {product.discount > 0 && (
+        {(product.discount > 0 || product.discountPercent > 0) && (
           <span className="discount-badge">
-            SAVE {product.discount}%
+            SAVE {product.discount || product.discountPercent}%
           </span>
         )}
 
@@ -85,9 +90,9 @@ export default function ProductCard({ product, openSidebar }) {
             </span>
           )}
 
-          {product.discount > 0 && (
+          {(product.discount > 0 || product.discountPercent > 0) && (
             <span className="discount-text">
-              ({product.discount}% OFF)
+              ({product.discount || product.discountPercent}% OFF)
             </span>
           )}
         </div>

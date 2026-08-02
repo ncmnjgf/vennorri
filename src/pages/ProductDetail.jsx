@@ -5,6 +5,7 @@ import useProducts from "../hooks/useProducts";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
 import ProductCard from "../components/ProductCard";
+import { optimizeImage } from "../utils/imageOptimization";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -64,22 +65,20 @@ export default function ProductDetail() {
         {/* LEFT: IMAGES */}
         <div className="pdp-images">
           <img
-            src={product.image || product.images?.[0] || ""}
+            src={optimizeImage(product.image || product.images?.[0]?.url || product.images?.[0] || "", 1000)}
             alt={product.title || product.name}
             className="pdp-main-img"
+            decoding="sync"
           />
-          {(product.hoverImage || product.images?.[1]) && (
+          {(product.hoverImage || product.images?.[1]?.url || product.images?.[1]) && (
             <img
-              src={product.hoverImage || product.images?.[1]}
+              src={optimizeImage(product.hoverImage || product.images?.[1]?.url || product.images?.[1] || "", 1000)}
               alt={product.title || product.name}
               className="pdp-secondary-img"
+              loading="lazy"
+              decoding="async"
             />
           )}
-          <img
-            src={product.image || product.images?.[0] || ""}
-            alt={product.title || product.name}
-            className="pdp-secondary-img"
-          />
         </div>
 
         {/* RIGHT: DETAILS */}

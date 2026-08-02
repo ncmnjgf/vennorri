@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { optimizeImage } from "../utils/imageOptimization";
 
 export default function CartDrawer({ onClose }) {
   const { cart, removeFromCart, updateQty, cartTotal, cartCount } = useContext(CartContext);
@@ -55,7 +56,7 @@ export default function CartDrawer({ onClose }) {
             cart.map((item, i) => (
               <div key={`${item.id}-${item.size}-${i}`} className="cd-item">
                 <Link to={`/product/${item.id}`} onClick={onClose}>
-                  <img src={item.image || (item.images && item.images[0])} alt={item.name || item.title} className="cd-img" />
+                  <img src={optimizeImage(item.image || item.images?.[0]?.url || item.images?.[0] || "", 400)} alt={item.name || item.title} className="cd-img" loading="lazy" />
                 </Link>
                 <div className="cd-item-info">
                   <p className="cd-item-name">{item.name || item.title}</p>

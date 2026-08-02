@@ -10,7 +10,7 @@ export default function Cart() {
 
       {cart.map((item, i) => (
         <div key={i} className="cart-row">
-          <img src={item.image} />
+          <img src={item.image || item.images?.[0]?.url || item.images?.[0] || ""} />
           <p>{item.title} ({item.size})</p>
           <button onClick={() => removeFromCart(i)}>Remove</button>
         </div>

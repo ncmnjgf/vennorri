@@ -9,7 +9,7 @@ import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 
 export default function NewArrivals() {
-  const { products: newProducts, loading } = useProducts({ isNew: true });
+  const { products: newProducts, loading } = useProducts({ isNewArrival: true });
 
   if (loading) return <div className="product-carousel">Loading new arrivals...</div>;
 

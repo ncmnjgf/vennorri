@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 
@@ -16,6 +16,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import CheckoutPage from "./pages/CheckoutPage";
+import AdminPage from "./pages/AdminPage";
 
 import Men from "./pages/Men";
 import MenFunky from "./pages/MenFunky";
@@ -25,17 +26,26 @@ import Women from "./pages/Women";
 import WomenFunky from "./pages/WomenFunky";
 import WomenPremium from "./pages/WomenPremium";
 
-function App() {
+import { AdminProductProvider } from "./context/AdminProductContext";
+
+function AppLayout() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <div className={showAnnouncement ? "has-announcement" : ""}>
-      <AnnouncementBar onClose={() => setShowAnnouncement(false)} />
-      <DeliveryPopup />
-      <WhatsAppPopup />
-      <ScrollToTop />
+    <div className={!isAdmin && showAnnouncement ? "has-announcement" : ""}>
       <Toaster position="bottom-center" toastOptions={{ className: 'custom-toast', style: { borderRadius: '4px', background: '#333', color: '#fff' } }} />
-      <Navbar />
+
+      {!isAdmin && (
+        <>
+          <AnnouncementBar onClose={() => setShowAnnouncement(false)} />
+          <DeliveryPopup />
+          <WhatsAppPopup />
+          <ScrollToTop />
+          <Navbar />
+        </>
+      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -45,6 +55,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/admin" element={<AdminPage />} />
 
         <Route path="/men">
           <Route index element={<Men />} />
@@ -59,8 +70,16 @@ function App() {
         </Route>
       </Routes>
 
-      <Footer />
+      {!isAdmin && <Footer />}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AdminProductProvider>
+      <AppLayout />
+    </AdminProductProvider>
   );
 }
 

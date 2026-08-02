@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { optimizeImage } from "../utils/imageOptimization";
 
 export default function ProductSidebar({ product, close }) {
   const { addToCart } = useContext(CartContext);
@@ -21,7 +22,13 @@ export default function ProductSidebar({ product, close }) {
       <div className="product-sidebar">
         <button className="sidebar-close" onClick={close}>✕</button>
 
-        <img src={product.image} alt={product.title} className="sidebar-image" />
+        <img 
+          src={optimizeImage(product.image || product.images?.[0]?.url || product.images?.[0] || "", 800)} 
+          alt={product.title || product.name} 
+          className="sidebar-image" 
+          loading="lazy"
+          decoding="async"
+        />
 
         <h3>{product.title}</h3>
         <p className="sidebar-price">

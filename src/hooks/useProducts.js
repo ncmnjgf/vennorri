@@ -3,7 +3,7 @@ import { getProducts } from '../services/productService';
 import localProducts from '../data/products';
 
 export default function useProducts(params = {}) {
-  const [products, setProducts] = useState(localProducts); // default to local data as fallback
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -12,24 +12,28 @@ export default function useProducts(params = {}) {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await getProducts(params);
+        // getProducts returns response.data from axios, i.e. the JSON body:
+        // { success: true, data: [...products], pagination: {...} }
+        const body = await getProducts(params);
+
         if (isMounted) {
-          if (response.success && response.data?.products?.length > 0) {
-            setProducts(response.data.products);
-          } else if (response.success && response.data?.length > 0) {
-            setProducts(response.data);
+          const list = Array.isArray(body?.data) ? body.data : [];
+
+          if (body?.success && list.length > 0) {
+            setProducts(list);
           } else {
-            console.warn("Backend didn't return products (db may be empty). Falling back to mock data.");
-            // Optional: apply simple local filtering based on params to mock data here if needed
-            let filtered = [...localProducts];
-            if (params.isBestSeller) filtered = filtered.filter(p => p.isBestSeller);
-            if (params.isNew) filtered = filtered.filter(p => p.isNew);
-            setProducts(filtered);
+            // Backend returned no products — fall back to local mock data
+            console.warn('Backend returned no products. Falling back to local data.', body);
+            setProducts(getLocalFallback(params));
           }
         }
       } catch (err) {
-        console.error('Failed to fetch products:', err);
+        console.error('Product fetch error:', err?.response?.data || err.message);
         if (isMounted) setError(err);
+        // Backend unavailable — use local fallback
+        if (isMounted) {
+          setProducts(getLocalFallback(params));
+        }
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -40,4 +44,14 @@ export default function useProducts(params = {}) {
   }, [JSON.stringify(params)]);
 
   return { products, loading, error };
+}
+
+/** Local mock data filtered by the same params passed to the API */
+function getLocalFallback(params) {
+  let filtered = [...localProducts];
+  if (params.isBestSeller) filtered = filtered.filter(p => p.isBestSeller);
+  if (params.isNewArrival) filtered = filtered.filter(p => p.isNewArrival ?? p.isNew);
+  if (params.isTrending)   filtered = filtered.filter(p => p.isTrending);
+  if (params.gender)       filtered = filtered.filter(p => p.gender === params.gender);
+  return filtered;
 }

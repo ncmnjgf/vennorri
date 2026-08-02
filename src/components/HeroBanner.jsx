@@ -5,6 +5,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 import slides from "../data/slides";
 import ShopByGender from "./ShopByGender";
+import { optimizeImage } from "../utils/imageOptimization";
 
 export default function HeroBanner() {
   return (
@@ -20,9 +21,14 @@ export default function HeroBanner() {
           speed={1200}
           style={{ width: "100%", height: "100%" }}
         >
-          {slides.map((slide) => (
+          {slides.map((slide, index) => (
             <SwiperSlide key={slide.id}>
-              <img src={slide.image} alt={slide.title} />
+              <img 
+                src={optimizeImage(slide.image, 1600)} 
+                alt={slide.title} 
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding={index === 0 ? "sync" : "async"}
+              />
               <div className="slide-overlay">
                 <p className="slide-tagline">{slide.tagline}</p>
                 <h1 className="slide-title">{slide.title}</h1>
